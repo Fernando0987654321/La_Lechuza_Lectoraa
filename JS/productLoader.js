@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 loader.style.display = 'none';
                 alert("¡Artículo añadido correctamente!");
-            }, 2000); // 2 segundos para que se aprecie la bolota girando
+            }, 2000); 
         }
     };
 
