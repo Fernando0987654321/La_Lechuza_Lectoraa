@@ -3222,7 +3222,7 @@ a { text-decoration: none; color: inherit; }
         transform: translateY(0);
     }
 }
-
+/* --- ANIMACIONES EXISTENTES --- */
 @keyframes entradaCascada {
     from {
         opacity: 0;
@@ -3237,6 +3237,7 @@ a { text-decoration: none; color: inherit; }
 
 .book-product-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    position: relative; 
 }
 
 .catalog-main {
@@ -3250,8 +3251,29 @@ a { text-decoration: none; color: inherit; }
 }
 
 
+.spinner-mini {
+    width: 50px;           
+    height: 50px;
+    border: 8px solid #d7ccc8; 
+    border-top: 8px solid #5d4037; 
+    border-radius: 50%;
+    margin-bottom: 15px;    
+    animation: rotarBolota 1s linear infinite;
+}
+
+@keyframes rotarBolota {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
 .card-loader p {
     animation: palpito 1.5s ease-in-out infinite;
+    font-size: 0.9em;
+    color: #5d4037;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
 }
 
 @keyframes palpito {
