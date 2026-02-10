@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesando Artículo - La Lechuza Lectora</title>
+    <link rel="icon" type="image/png" href="../Imagenes/logo.png">
+    
+    <style>
+        /* Estilos base y fondo de pantalla */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            height: 100vh;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            /* Fondo con la imagen 5.jpg */
+            background: url('../Imagenes/Carrusel/5.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        /* Capa de desenfoque y oscuridad (Overlay) */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px); 
+            z-index: 1;
+        }
+
+        /* Tarjeta de carga central */
+        .loading-card {
+            background: rgba(244, 236, 226, 0.95); 
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 2;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 85%;
+            border: 2px solid #8d6e63;
+        }
+
+        /* Spinner (Círculo de carga) */
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #d7ccc8;
+            border-top: 6px solid #5d4037; 
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        h2 { 
+            color: #5d4037; 
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        p {
+            color: #8d6e63;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        /* Barra de progreso */
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #5d4037;
+            border-radius: 5px;
+            /* Animación de 3 segundos para la barra */
+            animation: fillProgress 3s forwards ease-in-out;
+        }
+
+        @keyframes fillProgress {
+            100% { width: 100%; }
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: #a1887f;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <div class="loading-card">
+        <div class="spinner"></div>
+        <h2>Cargando Artículo...</h2>
+        <p>La Lechuza está preparando tu libro para llevarlo al carrito.</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="footer-text">La Lechuza Lectora</div>
+    </div>
+
+    <script>
+        // Redirección automática después de 3.2 segundos
+        setTimeout(() => {
+            // Te llevará a Carrito.html una vez terminada la carga
+            window.location.href = "Carrito.html"; 
+        }, 3200);
+    </script>
+
+</body>
+</html>
