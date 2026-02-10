@@ -2,7 +2,7 @@ let currentPage = 1;
 const totalPages = 68;
 const MAX_PAGES_VISIBLE = 7;
 
-// Tus 8 libros reales con las rutas exactas
+// Tus 8 libros reales con las rutas corregidas a tus archivos .png
 const misLibrosReales = [
     { id: 1, titulo: "Los fantasmas favoritos", autor: "Roald Dahl", precio: 399, img: "../Imagenes/Libro1.png" },
     { id: 2, titulo: "Joe Hill Fantasmas", autor: "Joe Hill", precio: 399, img: "../Imagenes/Libro2.png" },
@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (page < 1 || page > totalPages) return;
         currentPage = page;
 
-        // Limpiamos el contenedor y mostramos carga
+        // Limpiamos el contenedor y mostramos carga con el estilo de tu marca
         productsContainer.innerHTML = `
             <div class="loading-message" style="grid-column: 1/-1; text-align: center; padding: 50px;">
-                <h2>Cargando Catálogo...</h2>
+                <h2 style="color: #5d4037;">Cargando Catálogo...</h2>
                 <p>Página ${page} de ${totalPages}</p>
             </div>`;
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 html += crearHtmlTarjeta(libro, index);
             });
         } 
-        // Si es otra página, simulamos usando tus mismas portadas
+        // Si es otra página, simulamos usando tus portadas reales en bucle
         else {
             for (let i = 0; i < 8; i++) {
                 const mockId = ((page - 1) * 8) + i + 1;
@@ -70,28 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function crearHtmlTarjeta(libro, index) {
-        // Aquí aplicamos la animación de cascada que pegaste en el CSS
+        // Estructura de tarjeta con animación de cascada y estilos integrados
         return `
-            <div class="book-product-card" style="opacity: 0; animation: entradaCascada 0.6s ease forwards ${index * 0.1}s;">
-                <span class="book-tag-grid" style="background-color: var(--color-secondary);">Oferta</span>
-                <img src="${libro.img}" alt="${libro.titulo}"> 
-                <p class="book-title-grid" style="font-weight: bold; margin: 10px 0;">${libro.titulo}</p>
+            <div class="book-product-card" style="opacity: 0; animation: entradaCascada 0.6s ease forwards ${index * 0.1}s; background-color: rgba(240, 231, 203, 0.9); padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                <span class="book-tag-grid" style="background-color: #fbc02d; color: white; padding: 3px 10px; border-radius: 8px 0; position: absolute; top: 0; left: 0; font-size: 0.8em;">Oferta</span>
+                <img src="${libro.img}" alt="${libro.titulo}" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 4px;"> 
+                <p class="book-title-grid" style="font-weight: bold; margin: 10px 0; color: #5d4037;">${libro.titulo}</p>
                 <div class="rating-small" style="color: #fbc02d; margin-bottom: 5px;">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
                 <span class="book-price-grid" style="color: #d32f2f; font-weight: bold; font-size: 1.2em;">$${libro.precio}</span>
                 <div class="product-actions" style="display: flex; gap: 10px; margin-top: 10px;">
-                    <button class="btn-primary" style="flex: 1;">Añadir</button>
-                    <button class="btn-secondary" style="flex: 1;">Comprar</button>
+                    <button class="btn-primary" style="flex: 1; background-color: #5d4037; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">Añadir</button>
+                    <button class="btn-secondary" style="flex: 1; background-color: transparent; border: 2px solid #5d4037; color: #5d4037; padding: 8px; border-radius: 5px; cursor: pointer;">Comprar</button>
                 </div>
             </div>`;
     }
 
-    // --- LÓGICA DE PAGINACIÓN ---
     function updatePaginationView() {
         const pages = calculatePaginationRange();
         let html = '';
@@ -99,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (p === '...') {
                 html += `<span class="page-ellipsis" style="padding: 0 10px;">...</span>`;
             } else {
-                const isActive = (p == currentPage) ? 'active' : '';
-                html += `<span class="page-number ${isActive}" data-page="${p}" style="cursor:pointer; padding: 5px 10px; margin: 0 2px; border: 1px solid #ccc; border-radius: 4px;">${p}</span>`;
+                const isActive = (p == currentPage) ? 'background-color: #fbc02d; color: #333; font-weight: bold;' : '';
+                html += `<span class="page-number" data-page="${p}" style="cursor:pointer; padding: 5px 10px; margin: 0 2px; border: 1px solid #ccc; border-radius: 4px; ${isActive}">${p}</span>`;
             }
         });
         paginationDiv.innerHTML = html;
@@ -129,5 +124,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) nextBtn.disabled = (currentPage === totalPages);
     }
 
-    loadProducts(1); // Carga inicial
+    loadProducts(1);
 });
