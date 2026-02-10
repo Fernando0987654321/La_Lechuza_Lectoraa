@@ -2,33 +2,128 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Servidor en mantenimiento</title>
+    <title>Servidor en mantenimiento - La Lechuza Lectora</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background-color: #f4ece2; color: #5d4037; }
-        .tablero { display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; justify-content: center; margin-top: 20px; }
-        .celda { width: 100px; height: 100px; background: #fff; border: 2px solid #8d6e63; font-size: 2rem; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        #status { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; color: #8d6e63; }
-        .btn-reiniciar { margin-top: 20px; padding: 10px 20px; background-color: #5d4037; color: white; border: none; border-radius: 5px; cursor: pointer; display: none; }
+        
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            text-align: center; 
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #5d4037;
+            overflow: hidden;
+            position: relative;
+        }
+
+        
+        .background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('Imagenes/Carrusel/5.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.5) blur(3px); 
+            z-index: -1;
+        }
+
+        
+        .game-card {
+            background-color: rgba(244, 236, 226, 0.9); 
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+        }
+
+        .logo-error {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        h1 { margin: 10px 0; font-size: 1.8em; }
+
+        .tablero { 
+            display: grid; 
+            grid-template-columns: repeat(3, 100px); 
+            gap: 8px; 
+            justify-content: center; 
+            margin-top: 20px; 
+        }
+
+        .celda { 
+            width: 100px; 
+            height: 100px; 
+            background: #fff; 
+            border: 2px solid #8d6e63; 
+            border-radius: 8px;
+            font-size: 2.5rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: background 0.3s;
+        }
+
+        .celda:hover { background: #fdf5e6; }
+
+        #status { font-size: 1.3rem; font-weight: bold; margin: 15px 0; color: #5d4037; }
+
+        .btn-reiniciar { 
+            margin-top: 20px; 
+            padding: 12px 25px; 
+            background-color: #5d4037; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+            display: none; 
+        }
+
+        .btn-reiniciar:hover { background-color: #8d6e63; }
+
+        .back-link { 
+            display: block; 
+            margin-top: 25px; 
+            color: #5d4037; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
     </style>
 </head>
 <body>
-    <h1>¡Ups! Servidor en mantenimiento</h1>
-    <p>Estamos trabajando para mejorar tu experiencia. Mientras tanto, ¿qué tal una partida de Gato?</p>
-    
-    <div id="status">Turno de: X</div>
-    <div class="tablero" id="tablero">
-        <div class="celda" onclick="jugar(0)"></div>
-        <div class="celda" onclick="jugar(1)"></div>
-        <div class="celda" onclick="jugar(2)"></div>
-        <div class="celda" onclick="jugar(3)"></div>
-        <div class="celda" onclick="jugar(4)"></div>
-        <div class="celda" onclick="jugar(5)"></div>
-        <div class="celda" onclick="jugar(6)"></div>
-        <div class="celda" onclick="jugar(7)"></div>
-        <div class="celda" onclick="jugar(8)"></div>
-    </div>
+    <div class="background"></div>
 
-    <button id="reset-btn" class="btn-reiniciar" onclick="reiniciar()">Jugar de nuevo</button>
+    <div class="game-card">
+        <img src="Imagenes/logo.png" alt="Logo" class="logo-error">
+        
+        <h1>¡Mantenimiento!</h1>
+        <p>Estamos mejorando tu experiencia. Mientras esperas, ¡echa una partida!</p>
+        
+        <div id="status">Turno de: X</div>
+        
+        <div class="tablero" id="tablero">
+            <div class="celda" onclick="jugar(0)"></div>
+            <div class="celda" onclick="jugar(1)"></div>
+            <div class="celda" onclick="jugar(2)"></div>
+            <div class="celda" onclick="jugar(3)"></div>
+            <div class="celda" onclick="jugar(4)"></div>
+            <div class="celda" onclick="jugar(5)"></div>
+            <div class="celda" onclick="jugar(6)"></div>
+            <div class="celda" onclick="jugar(7)"></div>
+            <div class="celda" onclick="jugar(8)"></div>
+        </div>
+
+        <button id="reset-btn" class="btn-reiniciar" onclick="reiniciar()">Jugar de nuevo</button>
+        
+        <a href="index.html" class="back-link">← Volver al inicio</a>
+    </div>
 
     <script>
         let turno = 'X';
@@ -36,9 +131,9 @@
         let juegoActivo = true;
 
         const combinacionesGanadoras = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Filas
-            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columnas
-            [0, 4, 8], [2, 4, 6]             // Diagonales
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
         ];
 
         function jugar(i) {
@@ -46,6 +141,9 @@
                 estado[i] = turno;
                 document.getElementsByClassName('celda')[i].innerText = turno;
                 
+                
+                document.getElementsByClassName('celda')[i].style.color = (turno === 'X') ? '#d32f2f' : '#fbc02d';
+
                 if (verificarGanador()) {
                     document.getElementById('status').innerText = "¡Ganó la " + turno + "!";
                     juegoActivo = false;
@@ -66,9 +164,7 @@
         }
 
         function verificarGanador() {
-            return combinacionesGanadoras.some(combinacion => {
-                return combinacion.every(indice => estado[indice] === turno);
-            });
+            return combinacionesGanadoras.some(comb => comb.every(idx => estado[idx] === turno));
         }
 
         function reiniciar() {
@@ -83,7 +179,5 @@
             }
         }
     </script>
-    <br><br>
-    <a href="index.html" style="color: #8d6e63;">Volver al inicio</a>
 </body>
 </html>
