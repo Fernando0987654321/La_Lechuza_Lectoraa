@@ -1,56 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
+    <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Lechuza Lectora - Iniciar Sesión</title>
+    
     <link rel="stylesheet" href="../../Estilos/Estilo1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-
-    <script src="../../JS/Boton_Inicio_sesion_admin.js"></script>
-    
-
-    <script src="../../JS/Redireccionamiento_login.js"></script> 
+    <script src="../../JS/Redireccionamiento_login.js" defer></script> 
 </head>
 <body class="form-page">
 
-
     <main class="main-content form-main">
-        <div class="background-overlay" style="filter: brightness(0.6);"></div>
+        <div class="background-overlay" style="background: url('../../Imagenes/Carrusel/5.jpg') no-repeat center center/cover; filter: brightness(0.6); position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></div>
 
         <div class="form-card login-card">
             <div class="center-logo-box">
                 <img src="../../Imagenes/logo.png" alt="Logo Central" class="main-logo">
             </div>
             
-            <form class="login-form">
+            <form class="login-form" id="form-login-usuario">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" required>
+                <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
 
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" required>
+                <input type="password" id="contrasena" placeholder="********" required>
 
                 <div class="login-action-buttons">
-
-                    <button type="button" class="btn-primary">Iniciar sesión</button>
-                    <button type="button" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">Iniciar sesión</button>
+                    <button type="button" class="btn-cancel" onclick="window.location.href='../../index.html'">Cancelar</button>
                 </div>
             </form>
 
-            <a class="btn-admin-switch" href="../../html/Inicio_de_sesion/Inicio_sesion_admin.html">Administrativo</a>
+            <a class="btn-admin-switch" href="Inicio_sesion_admin.html" style="display: block; text-align: center; margin-top: 15px; color: #5d4037; font-weight: bold;">Acceso Administrativo</a>
             
-            <div class="login-actions">
-                <button class="btn-create-account">Crear cuenta</button>
-                <button class="btn-forgot-password">Olvido la contraseña?</button>
+            <div class="login-actions" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button class="btn-create-account" onclick="window.location.href='Registro.html'">Crear cuenta</button>
+                <button class="btn-forgot-password" onclick="window.location.href='Recuperacion.html'">¿Olvidó la contraseña?</button>
             </div>
         </div>
     </main>
-
 
     <footer class="site-footer">
         <div class="social-links">
@@ -60,7 +53,7 @@
             <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
-            © Todos los derechos reservados 2025. Diseñado por La Lechuza Lectora ©
+            © Todos los derechos reservados 2026. Diseñado por La Lechuza Lectora ©
         </div>
     </footer>
 </body>
