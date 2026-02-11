@@ -3280,3 +3280,18 @@ a { text-decoration: none; color: inherit; }
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
 }
+
+.location-section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map-wrapper iframe {
+    filter: sepia(20%) contrast(90%); 
+    transition: filter 0.3s ease;
+}
+
+.map-wrapper iframe:hover {
+    filter: none;
+}

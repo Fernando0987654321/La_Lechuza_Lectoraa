@@ -11,6 +11,27 @@
     <script src="../JS/Boton_Inicio_Sesion_html.js"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Estilos específicos para la integración del mapa */
+        .location-section {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid #5d4037;
+        }
+
+        .map-wrapper iframe {
+            display: block;
+            filter: grayscale(20%) sepia(10%); /* Toque vintage para combinar con la marca */
+        }
+    </style>
 </head>
 <body>
 
@@ -40,7 +61,7 @@
 
         <div class="contact-container">
             <h1 class="page-title">Contáctanos</h1>
-            <p class="page-subtitle">Hablemos de libros. Si tienes preguntas, sugerencias o requieres soporte, utiliza el formulario.</p>
+            <p class="page-subtitle">Hablemos de libros. Si tienes preguntas, sugerencias o requieres soporte, utiliza el formulario o visítanos.</p>
 
             <div class="contact-grid">
                 
@@ -79,6 +100,21 @@
                     </address>
                 </div>
             </div>
+
+            <section class="location-section">
+                <h2 style="text-align: center; color: #f4ece2; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Nuestra Ubicación</h2>
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.5146036737336!2d-99.05156942478635!3d19.389972781878367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1e29202958067%3A0xc4a193796f642637!2sAv.%20Telecomunicaciones%2C%20Chinameca%20Pac%20de%20Ju%C3%A1rez%2C%20Iztapalapa%2C%2009208%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1707660000000!5m2!1ses-419!2smx" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </section>
         </div>
     </main>
 
