@@ -69,9 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="book-product-card" id="card-${libro.id}" style="opacity: 0; animation: entradaCascada 0.6s ease forwards ${index * 0.1}s; background-color: rgba(240, 231, 203, 0.9); padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; position: relative; overflow: hidden;">
                 
                 <div class="card-loader" id="loader-${libro.id}" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 10; flex-direction: column; justify-content: center; align-items: center;">
-                    
                     <div class="spinner-mini"></div>
-                    
                     <p>La Lechuza está buscando tu libro<br>en la estantería...</p>
                 </div>
 
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-actions" style="display: flex; gap: 10px; margin-top: 10px;">
                     <button class="btn-primary" onclick="activarCargaIndividual(${libro.id})" style="flex: 1; background-color: #5d4037; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">Añadir</button>
                     
-                    <button class="btn-secondary" onclick="window.location.href='CargandoCompra.html'" style="flex: 1; background-color: transparent; border: 2px solid #5d4037; color: #5d4037; padding: 8px; border-radius: 5px; cursor: pointer;">Comprar</button>
+                    <button class="btn-secondary" onclick="window.location.href='Logeado/compra/CargandoArticulo.html'" style="flex: 1; background-color: transparent; border: 2px solid #5d4037; color: #5d4037; padding: 8px; border-radius: 5px; cursor: pointer;">Comprar</button>
                 </div>
             </div>`;
     }
