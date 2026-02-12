@@ -1,29 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const TO_CANCEL_URL = '../../index.html'; 
+    
 
-    const TO_SUCCESS_PAGE_URL = '../logeado/Pagina_principal.html'; 
+    const TO_SUCCESS_PAGE_URL = '../Logeado/Pagina_principal.html'; 
 
     const TO_REGISTER_URL = 'Registro.html'; 
     const TO_RECOVERY_URL = 'Recuperacion.html';
 
-    /**
-     * Valida que una cadena tenga el formato básico de un correo electrónico.
-     * @param {string} email La cadena a validar.
-     * @returns {boolean} True si la cadena parece un correo válido.
-     */
     function isValidEmail(email) {
-
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
-    const loginSubmitButton = document.querySelector('.login-action-buttons .btn-primary');
-
+    
+    const loginSubmitButton = document.querySelector('.btn-primary');
     const correoInput = document.getElementById('correo');
     const contrasenaInput = document.getElementById('contrasena'); 
 
-    if (loginSubmitButton && loginSubmitButton.textContent.trim().toLowerCase() === 'iniciar sesión') {
+    if (loginSubmitButton) {
         loginSubmitButton.addEventListener('click', (event) => {
             event.preventDefault(); 
             
@@ -39,19 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            window.location.replace(TO_SUCCESS_PAGE_URL);
+          
+            console.log("Accediendo a: " + TO_SUCCESS_PAGE_URL);
+            window.location.href = TO_SUCCESS_PAGE_URL;
         });
     }
 
+    
     const cancelButton = document.querySelector('.btn-cancel');
-
     if (cancelButton) {
         cancelButton.addEventListener('click', () => {
-
-            window.location.replace(TO_CANCEL_URL);
+            window.location.href = TO_CANCEL_URL;
         });
     }
 
+  
     const createAccountButton = document.querySelector('.btn-create-account');
     if (createAccountButton) {
         createAccountButton.addEventListener('click', () => {
@@ -59,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    
     const forgotPasswordButton = document.querySelector('.btn-forgot-password');
     if (forgotPasswordButton) {
         forgotPasswordButton.addEventListener('click', () => {
