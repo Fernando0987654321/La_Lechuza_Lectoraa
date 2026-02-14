@@ -1,17 +1,22 @@
 let currentPage = 1;
 const totalPages = 68;
 const MAX_PAGES_VISIBLE = 7;
+const getCorrectPath = () => {
 
+    return window.location.pathname.includes('Logeado') ? '../../' : '../';
+};
+
+const pathPrefix = getCorrectPath();
 
 const misLibrosReales = [
-    { id: 1, titulo: "Sister brothers", autor: "Roald Dahl", precio: 399, img: "../Imagenes/Libro1.png" },
-    { id: 2, titulo: "Perfume", autor: "Joe Hill", precio: 356, img: "../Imagenes/Libro2.png" },
-    { id: 3, titulo: "Diario de ana frank", autor: "Stephen King", precio: 456, img: "../Imagenes/Libro3.png" },
-    { id: 4, titulo: "Julio verde", autor: "Adam Nevill", precio: 764, img: "../Imagenes/Libro4.png" },
-    { id: 5, titulo: "Cine de Terror", autor: "Antonio José", precio: 412, img: "../Imagenes/Libro5.png" },
-    { id: 6, titulo: "Stephen King", autor: "Lázaro Berber", precio: 342, img: "../Imagenes/Libro6.png" },
-    { id: 7, titulo: "El hobbit", autor: "By Mart", precio: 755, img: "../Imagenes/Libro7.png" },
-    { id: 8, titulo: "cuando resolvamos la historia", autor: "J.R. Johansson", precio: 432, img: "../Imagenes/Libro8.png" }
+    { id: 1, titulo: "Sister brothers", autor: "Roald Dahl", precio: 399, img: `${pathPrefix}Imagenes/Libro1.png` },
+    { id: 2, titulo: "Perfume", autor: "Joe Hill", precio: 356, img: `${pathPrefix}Imagenes/Libro2.png` },
+    { id: 3, titulo: "Diario de ana frank", autor: "Stephen King", precio: 456, img: `${pathPrefix}Imagenes/Libro3.png` },
+    { id: 4, titulo: "Julio verde", autor: "Adam Nevill", precio: 764, img: `${pathPrefix}Imagenes/Libro4.png` },
+    { id: 5, titulo: "Cine de Terror", autor: "Antonio José", precio: 412, img: `${pathPrefix}Imagenes/Libro5.png` },
+    { id: 6, titulo: "Stephen King", autor: "Lázaro Berber", precio: 342, img: `${pathPrefix}Imagenes/Libro6.png` },
+    { id: 7, titulo: "El hobbit", autor: "By Mart", precio: 755, img: `${pathPrefix}Imagenes/Libro7.png` },
+    { id: 8, titulo: "cuando resolvamos la historia", autor: "J.R. Johansson", precio: 432, img: `${pathPrefix}Imagenes/Libro8.png` }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     id: mockId,
                     titulo: `Libro de Terror #${mockId}`,
                     precio: 399 + (i * 10),
-                    img: `../Imagenes/Libro${(i % 8) + 1}.png`
+                    img: `${pathPrefix}Imagenes/Libro${(i % 8) + 1}.png`
                 };
                 html += crearHtmlTarjeta(libroSimulado, i);
             }
@@ -65,6 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function crearHtmlTarjeta(libro, index) {
+        // Ajustamos la ruta del botón comprar para que funcione dentro de Logeado o fuera
+        const buyRedirect = window.location.pathname.includes('Logeado') 
+            ? 'compra/CargandoArticulo.html' 
+            : 'Logeado/compra/CargandoArticulo.html';
+
         return `
             <div class="book-product-card" id="card-${libro.id}" style="opacity: 0; animation: entradaCascada 0.6s ease forwards ${index * 0.1}s; background-color: rgba(240, 231, 203, 0.9); padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; position: relative; overflow: hidden;">
                 
@@ -83,13 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 <div class="product-actions" style="display: flex; gap: 10px; margin-top: 10px;">
                     <button class="btn-primary" 
-                        onclick="agregarAlCarritoClick(${libro.id}, '${libro.titulo}', ${libro.precio}, '${libro.img}')" 
+                        onclick="agregarAlCarritoClick(${libro.id}, '${libro.titulo.replace(/'/g, "\\'")}', ${libro.precio}, '${libro.img}')" 
                         style="flex: 1; background-color: #5d4037; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">
                         Añadir
                     </button>
                     
                     <button class="btn-secondary" 
-                        onclick="window.location.href='Logeado/compra/CargandoArticulo.html'" 
+                        onclick="window.location.href='${buyRedirect}'" 
                         style="flex: 1; background-color: transparent; border: 2px solid #5d4037; color: #5d4037; padding: 8px; border-radius: 5px; cursor: pointer;">
                         Comprar
                     </button>
@@ -97,24 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
     }
 
-    
     window.agregarAlCarritoClick = function(id, titulo, precio, imagen) {
-        
         const loader = document.getElementById(`loader-${id}`);
         if (loader) {
             loader.style.display = 'flex';
-            
-            
             if (typeof addToCart === 'function') {
-                addToCart({
-                    id: id,
-                    name: titulo,
-                    price: precio,
-                    image: imagen
-                }, false);
+                addToCart({ id: id, name: titulo, price: precio, image: imagen }, false);
             }
-
-        
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 2000);
